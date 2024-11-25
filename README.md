@@ -716,3 +716,8 @@ If you encounter a new error indicating a missing library, such as numpy, you wi
 ![image](https://github.com/user-attachments/assets/5a4917e8-b8b3-4084-8fc4-e23d975bb9a6)
 
 ### Step 8: Setting Up API Gateway
+
+Next, I will set up an API Gateway to create a RESTful API that allows users to access our house price prediction Lambda function easily.
+
+Navigate to the API Gateway Console and select the API that you created using the CloudFormation template.
+
