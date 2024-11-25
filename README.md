@@ -721,3 +721,19 @@ Next, I will set up an API Gateway to create a RESTful API that allows users to 
 
 Navigate to the API Gateway Console and select the API that you created using the CloudFormation template.
 
+![image](https://github.com/user-attachments/assets/4f61832b-2444-4a6e-9362-6408f1daca35)
+
+Click on “Create Resource”
+
+![image](https://github.com/user-attachments/assets/355807c5-f0fd-40dc-92fa-bec85138c738)
+
+Enter a name (e.g., predict) and click “Create Resource”.
+
+![image](https://github.com/user-attachments/assets/332190cd-6c24-414a-8506-7e2beac4d26d)
+
+Select the newly created resource, and select “Create Method”.
+
+
+
+
+
