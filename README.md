@@ -733,7 +733,84 @@ Enter a name (e.g., predict) and click “Create Resource”.
 
 Select the newly created resource, and select “Create Method”.
 
+![image](https://github.com/user-attachments/assets/66bae7a5-c33b-4c27-96fe-b69829444bc9)
 
+Choose POST and select “Lambda Function” as the integration type.
+
+![image](https://github.com/user-attachments/assets/03c7b55e-bf38-461f-bc5c-669ca5a1958d)
+
+Check “Use Lambda Proxy integration”.
+Enter the name of the Lambda Function.
+
+![image](https://github.com/user-attachments/assets/804fa90d-f946-497e-b55f-33e152f1ec6a)
+
+Click on the created resource and select Deploy API.
+
+![image](https://github.com/user-attachments/assets/896dbe5e-a860-429a-a72b-bd5ef542119d)
+
+Create a new stage (e.g., dev) and click “Deploy”.
+
+![image](https://github.com/user-attachments/assets/e24da88c-bf3f-4f34-a91f-60a82b96b234)
+
+Note the invoke URL provided; this will be used to call your API.
+
+![image](https://github.com/user-attachments/assets/f970696c-dd80-45ee-956f-d8a1d89353b5)
+
+### Step 9: Setting up CodePipeline for Lambda deployment
+
+Set up an AWS CodePipeline to automate the deployment of Lambda function whenever I push updates to my CodeCommit repository.
+
+Navigate to the CodePipeline console and click on Create pipeline.
+
+![image](https://github.com/user-attachments/assets/8b2ead4d-60bc-4bc7-814a-f668f02a08db)
+
+I am choosing Build custom pipeline.
+
+![image](https://github.com/user-attachments/assets/4d35381e-c370-420d-9504-eedc2563b18f)
+
+Provide a pipeline name. I am providing the name HousePricePredictionPipeline
+
+And for Execution mode, I have chosen Superseded. Because this option will deploy only the latest code without unnecessary delays or multiple deployments for each change.
+
+![image](https://github.com/user-attachments/assets/faa98dde-e773-4640-b502-e9d489457307)
+
+I am choosing Existing service role as I have created a service role for this.
+
+![image](https://github.com/user-attachments/assets/8138b94a-513e-4ef4-99c8-c1de59562c32)
+
+I chose the Artifact location.
+
+![image](https://github.com/user-attachments/assets/9c9339b1-a80f-45b5-a77a-32b178d9695f)
+
+Choose the Source provider. I have stored my code in CodeCommit, so I would choose the Source provider as AWS CodeCommit.
+
+![image](https://github.com/user-attachments/assets/702667f5-9c57-407b-bca3-4c636caf0d25)
+
+I chose Amazon CloudWatch events for change detection. Because it provides real-time responsiveness, so you don’t have to wait for periodic checks, which can be slower.
+
+![image](https://github.com/user-attachments/assets/5078012a-1432-4a6b-b7de-7ef023d81464)
+
+On the Add build section, I choose other build providers because I am using CodeBuild for this project and I have already created a build project earlier for House price prediction.
+
+![image](https://github.com/user-attachments/assets/d027af97-3ed0-407f-bd64-d19ced0f08f7)
+
+Rest of the option, I am providing it as default.
+
+![image](https://github.com/user-attachments/assets/8fa74dab-7acc-455b-a2a3-6da6760b9e75)
+
+On the Add deploy stage, select AWS CloudFormation as Deploy provider.
+
+![image](https://github.com/user-attachments/assets/478c223f-1bd6-446c-b90e-acab366d36e7)
+
+Provide an S3 path where the file is stored in the Deploy Stage of CodePipeline.
+
+![image](https://github.com/user-attachments/assets/0c2666a4-3a97-4c08-81b4-2a455511a4f4)
+
+This step is just telling CloudFormation whether it is allowed to create IAM roles and policies during the stack deployment. If your template involves IAM roles (for Lambda execution or other resources), I need to grant this permission by selecting CAPABILITY_NAMED_IAM.
+
+This is the IAM role that AWS CloudFormation will assume to perform the deployment. If don’t specify it, CodePipeline will use a default role that it creates for the deployment. I have already created one so I am selecting it here.
+
+![Uploading image.png…]()
 
 
 
